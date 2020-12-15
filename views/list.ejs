@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>To Do List</title>
+</head>
+<body>
+  <div class="box" id="heading">
+    <h1><%= listTitle %></h1>     <! -- line no. 79 -->
+    <input type="text"  placeholder="search Items.." onkeyup="searchFun()">
+  </div>
+    <div class="box">
+     <% newListItems.forEach((item)=>{ %>    <! -- line no. 79 and 52 -->
+      <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%=item._id %>"  onchange="this.form.submit()"> <!--( submit() method same as clicking the Submit button)-->
+        <p><%= item.name %></p>  
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+      
+    </form>
+    <% }) %>
+      <form class="item" action="/" method="post">
+        <input type="text" name="newitem" placeholder="Wanna Add New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+     </form>
+    
+    </div>
+        
+     
+ <footer>Copyright 2020 The Universe</footer>
+</body>
+</html>
